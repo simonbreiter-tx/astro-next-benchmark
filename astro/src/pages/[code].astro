@@ -1,0 +1,21 @@
+---
+export const prerender = false;
+const { code } = Astro.params;
+const response = await fetch(`https://codes.simonbreiter.com/${code}`);
+const jsonResponse = await response.json();
+---
+
+<html>
+  <head>
+    <title>{jsonResponse.code}</title>
+    <style is:inline>
+      @import url('/CodePage.css');
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">{jsonResponse.code}</h1>
+      <p class="description">{jsonResponse.description}</p>
+    </div>
+  </body>
+</html>
